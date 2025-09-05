@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Find and replace the entire body selector */
+body {
+    font-family: 'Times New Roman', Times, serif; 
+    line-height: 1.6;
+    background-color: #0A0A0A;
+    color: #E0E0E0;
+    direction: ltr;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    
+    /* Fixes for cursor and footer */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* This ensures the body fills the screen height */
+}
+
+
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #E0B000;
+}
+
+/* Header and Main Navigation */
+.header {
+    background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)), url('background.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+}
+
+.navbar, .navbar-static {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    width: 100%;
+    z-index: 2;
+}
+
+.navbar-static {
+    background-color: #101010;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+/* Ensure the container inside navbar-static behaves correctly */
+.navbar-static .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #FFD700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: #E0E0E0;
+    font-size: 1.1em;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #FFD700;
+    border-bottom-color: #FFD700;
+}
+.nav-links a.active {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+
+.hero-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1;
+    margin-top: 40px; /* This pushes the content down */
+    text-align: center;
+}
+.hero-content h1 {
+    font-size: 3.8em;
+    margin-bottom: 20px;
+    color: #FFFFFF; 
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.hero-content h1 .highlight {
+    color: #FFD700; 
+}
+/* Cursor for typing effect */
+.typed-text::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    color: #B0B0B0; 
+    font-weight: 300;
+}
+
+.button {
+    display: inline-block;
+    background-color: #FFD700; 
+    color: #0A0A0A; 
+    padding: 15px 35px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border: 2px solid #FFD700;
+}
+
+.button:hover {
+    background-color: transparent; 
+    color: #FFD700;
+    transform: translateY(-3px);
+}
+
+.button-small {
+    padding: 10px 25px;
+    font-size: 0.9em;
+}
+
+/* Sections Styling */
+/* Find this and DELETE it or comment it out */
+main {
+    /* min-height: calc(100vh - 151px);  <-- This is no longer needed */
+    flex-grow: 1; /* This is the new rule that pushes footer down */
+}
+
+.section {
+    padding: 100px 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1); 
+    /* For JS scroll animation */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section:last-of-type {
+    border-bottom: none; 
+}
+
+.section-title {
+    font-size: 2.8em;
+    color: #FFD700;
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #FFD700;
+    margin: 15px auto 0;
+    transform: scaleX(0);
+    transition: transform 0.5s ease-in-out 0.3s; /* Added delay */
+}
+
+.section.visible .section-title::after {
+    transform: scaleX(1);
+}
+
+/* Specific Section Styles */
+.about-section { text-align: center; }
+.about-section p { font-size: 1.2em; max-width: 800px; margin: 0 auto; color: #B0B0B0; }
+
+.skills-section { background-color: #151515; }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto; }
+.skill-item { background-color: #202020; padding: 25px; border-radius: 8px; text-align: center; font-size: 1.3em; font-weight: 600; color: #FFD700; border: 1px solid rgba(255, 215, 0, 0.3); transition: transform 0.3s ease, background-color 0.3s ease; }
+.skill-item:hover { transform: translateY(-5px); background-color: #252525; }
+
+.projects-section { background-color: #0A0A0A; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
+.project-card { background-color: #151515; padding: 30px; border-radius: 8px; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.project-card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+.project-card h3 { font-size: 1.8em; margin-bottom: 15px; color: #FFD700; }
+.project-card p { font-size: 1.1em; color: #B0B0B0; margin-bottom: 25px; }
+
+.contact-section { background-color: #151515; text-align: center; }
+.contact-section > p { font-size: 1.2em; max-width: 700px; margin: 0 auto 30px; color: #B0B0B0; }
+.contact-info p { margin-bottom: 15px; font-size: 1.2em; }
+.contact-info a { font-weight: 600; margin-left: 10px; }
+.contact-info i { color: #FFD700; }
+
+.footer {
+    background-color: #050505;
+    color: #B0B0B0;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar, .navbar-static, .navbar-static .container { flex-direction: column; text-align: center; }
+    .nav-links { margin-top: 20px; flex-direction: column; width: 100%; }
+    .nav-links li { margin: 10px 0; }
+    .hero-content h1 { font-size: 2.5em; }
+    .hero-content p { font-size: 1.2em; }
+    .section-title { font-size: 2em; }
+    .skill-grid, .project-grid { grid-template-columns: 1fr; }
+    .button { padding: 12px 25px; font-size: 1em; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 1.8em; }
+    .hero-content h1 { font-size: 2em; }
+    .hero-content p { font-size: 1em; }
+    .section { padding: 60px 0; }
+}
+/* ================================= */
+/* ==== 1. Custom Mouse Cursor ==== */
+/* ================================= */
+.cursor-dot,
+.cursor-outline {
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 9999;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #FFD700;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid hsla(51, 100%, 50%, 0.5);
+}
+
+body:hover .cursor-dot,
+body:hover .cursor-outline {
+    opacity: 1;
+}
+
+/* Style for hover effect on links/buttons */
+a:hover ~ .cursor-outline,
+.button:hover ~ .cursor-outline,
+.filter-btn:hover ~ .cursor-outline {
+    transform: translate(-50%, -50%) scale(1.5);
+    background-color: hsla(51, 100%, 50%, 0.2);
+}
+a:hover ~ .cursor-dot,
+.button:hover ~ .cursor-dot,
+.filter-btn:hover ~ .cursor-dot {
+     transform: translate(-50%, -50%) scale(0.5);
+}
+
+
+/* Hide default cursor */
+body {
+    cursor: none;
+}
+/* Show cursor on specific elements if needed, like text inputs */
+input, textarea {
+    cursor: auto;
+}
+
+
+/* ======================================== */
+/* ==== 2. 3D Hover & Staggered Entry ==== */
+/* ======================================== */
+.skill-item,
+.project-card {
+    /* For 3D effect */
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    /* For Staggered effect */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+}
+
+.skill-item:hover,
+.project-card:hover {
+    /* The 3D effect */
+    transform: perspective(1000px) rotateY(5deg) rotateX(5deg) translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ==================================== */
+/* ==== 3. Project Filter Buttons ==== */
+/* ==================================== */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    background-color: transparent;
+    color: #E0E0E0;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: none; /* For custom cursor */
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: #FFD700;
+    color: #0A0A0A;
+    font-weight: bold;
+}
+
+/* Animation for hiding/showing projects */
+.project-card {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Find and replace the .project-card.hide selector */
+.project-card.hide {
+    transform: scale(0.8);
+    opacity: 0;
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    /* Adding transition here makes hiding smoother */
+    transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease, height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+}
+/* ================================= */
+/* ==== Hero Image & Rotating Box ==== */
+/* ================================= */
+
+.hero-image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px; /* Adds space between image and text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%; /* Makes the image circular */
+    border: 5px solid #FFD700; /* Gold frame */
+    object-fit: cover;
+    z-index: 2; /* Ensures image is above the box */
+}
+
+.rotating-box {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(255, 215, 0, 0.4); /* Made the border more transparent */
+    animation: spin 20s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Optional: Adjust hero content text alignment due to new element */
+.hero-content {
+    text-align: center;
+}
+/* ================================= */
+/* ==== Background Rotating Box ==== */
+/* ================================= */
+
+.background-rotating-box {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vh;
+    height: 60vh;
+    border: 3px solid rgba(255, 215, 0, 0.01); /* Very faint gold shadow for the main box */
+    /* Add multiple faint box-shadows to create nested squares */
+    box-shadow:
+        0 0 0 10px rgba(255, 215, 0, 0.028),  /* First inner square */
+        0 0 0 20px rgba(255, 215, 0, 0.026),  /* Second inner square */
+        0 0 0 30px rgba(255, 215, 0, 0.024);  /* Third inner square */
+    animation: spin-reverse 40s linear infinite;
+    z-index: 0;
+}
+
+/* New animation for reverse spinning */
+@keyframes spin-reverse {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}

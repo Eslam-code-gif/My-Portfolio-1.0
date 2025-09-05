@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Abdelrahim Mohamed</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="navbar-static">
+        <div class="container">
+            <div class="logo">Abdelrahim</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="skills.html">My Skills</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="cpp">C++</button>
+                    <button class="filter-btn" data-filter="dart">Dart</button>
+                </div>
+                <div class="project-grid">
+                    
+                    <div class="project-card" data-category="web">
+                        <h3>Mini Personal Website</h3>
+                        <p>A personal website design that showcases basic information and a profile picture, with a classic touch.</p>
+                        <a href="index.html" class="button button-small">View Project</a>
+                    </div>
+
+                    <div class="project-card" data-category="cpp">
+                        <h3>C++ Academic Project</h3>
+                        <p>An academic project built with OOP concepts and structured programming principles.</p>
+                        <a href="https://github.com/Eslam-code-gif/oop-Academic-project" class="button button-small" target="_blank">View Project</a>
+                    </div>
+
+                    <div class="project-card" data-category="dart">
+                        <h3>Dart Project One</h3>
+                        <p>A beginner-level Dart project showcasing problem-solving and basic programming logic.</p>
+                        <a href="https://github.com/Eslam-code-gif/dart_project_one" class="button button-small" target="_blank">View Project</a>
+                    </div>
+                    <div class="project-card" data-category="dart">
+                        <h3>Tic-Tac-Toe</h3>
+                        <p>A simple Tic-Tac-Toe game with dart</p>
+                        <a href="https://github.com/Eslam-code-gif/dart_project_two" class="button button-small" target="_blank">View Project</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Abdelrahim Mohamed. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
