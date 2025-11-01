@@ -1,3 +1,10 @@
+/* NOTE: I fixed the @import URL. 
+  The one in your file was:
+  @import url('[https://...](https://...)');
+  which is incorrect CSS syntax and breaks the font loading.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -114,6 +121,18 @@ a:hover {
     color: #FFD700;
     font-weight: bold;
 }
+
+/* Added for Hamburger Menu */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    font-size: 1.8em;
+    color: #FFD700;
+    background: none;
+    border: none;
+    cursor: none;
+    z-index: 1001;
+}
+/* End of Added Styles */
 
 
 .hero-content {
@@ -256,16 +275,84 @@ main {
     border-top: 1px solid rgba(255, 215, 0, 0.1);
 }
 
-/* Responsive Design */
+/* ============================ */
+/* ==== Responsive Design ==== */
+/* ============================ */
 @media (max-width: 768px) {
-    .navbar, .navbar-static, .navbar-static .container { flex-direction: column; text-align: center; }
-    .nav-links { margin-top: 20px; flex-direction: column; width: 100%; }
-    .nav-links li { margin: 10px 0; }
+    /* NOTE: The cursor hiding code was REMOVED from here. */
+    
+    /* Modified original rule */
+    .navbar, .navbar-static {
+        flex-direction: row; /* Change back to row to align logo and hamburger */
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 20px; /* Add padding for mobile view */
+        padding-right: 20px;
+    }
+    
+    /* Ensure container in static nav behaves */
+    .navbar-static .container {
+        flex-direction: row;
+        padding: 0;
+    }
+
+    /* Show hamburger menu */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Style nav links for mobile */
+    .nav-links {
+        position: fixed; /* Full screen overlay */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.98); /* Dark background */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        
+        /* Hide menu off-screen */
+        transform: translateY(-100%);
+        transition: transform 0.5s ease-in-out;
+        
+        z-index: 1000;
+    }
+
+    /* Show menu when active */
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        margin: 25px 0; /* Increased spacing */
+    }
+    .nav-links a {
+        font-size: 1.5em; /* Larger text for mobile */
+    }
+    /* End of mobile nav styles */
+
+
     .hero-content h1 { font-size: 2.5em; }
     .hero-content p { font-size: 1.2em; }
     .section-title { font-size: 2em; }
     .skill-grid, .project-grid { grid-template-columns: 1fr; }
     .button { padding: 12px 25px; font-size: 1em; }
+}
+
+/* NEW FIX: Hide custom cursor on touch devices (no hover) */
+/* This won't affect resized desktop browsers */
+@media (hover: none) {
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
+
+    body {
+        cursor: auto; /* Bring back the default cursor on mobile */
+    }
 }
 
 @media (max-width: 480px) {
@@ -310,13 +397,15 @@ body:hover .cursor-outline {
 /* Style for hover effect on links/buttons */
 a:hover ~ .cursor-outline,
 .button:hover ~ .cursor-outline,
-.filter-btn:hover ~ .cursor-outline {
+.filter-btn:hover ~ .cursor-outline,
+.menu-toggle:hover ~ .cursor-outline { /* Added menu-toggle */
     transform: translate(-50%, -50%) scale(1.5);
     background-color: hsla(51, 100%, 50%, 0.2);
 }
 a:hover ~ .cursor-dot,
 .button:hover ~ .cursor-dot,
-.filter-btn:hover ~ .cursor-dot {
+.filter-btn:hover ~ .cursor-dot,
+.menu-toggle:hover ~ .cursor-dot { /* Added menu-toggle */
      transform: translate(-50%, -50%) scale(0.5);
 }
 
@@ -342,6 +431,7 @@ input, textarea {
     /* For Staggered effect */
     opacity: 0;
     transform: translateY(40px);
+    /* MODIFIED: This transition now also handles filtering */
     transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
 }
 
@@ -358,6 +448,8 @@ input, textarea {
 .filter-buttons {
     display: flex;
     justify-content: center;
+    /* Added flex-wrap for better responsiveness on small screens */
+    flex-wrap: wrap; 
     gap: 15px;
     margin-bottom: 50px;
 }
@@ -382,22 +474,22 @@ input, textarea {
 }
 
 /* Animation for hiding/showing projects */
+/* REMOVED the conflicting .project-card transition rule that was here */
+/*
 .project-card {
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
+*/
 
 /* Find and replace the .project-card.hide selector */
+/* This new rule only handles fading/scaling, display:none is handled by JS */
 .project-card.hide {
     transform: scale(0.8);
     opacity: 0;
-    font-size: 0;
-    padding: 0;
-    margin: 0;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    /* Adding transition here makes hiding smoother */
-    transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease, height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+    pointer-events: none;
+    /* Removed width, height, padding, margin, font-size, and transition properties */
+    /* to prevent layout animation conflicts. */
+    overflow: hidden; 
 }
 /* ================================= */
 /* ==== Hero Image & Rotating Box ==== */
@@ -474,3 +566,4 @@ input, textarea {
         transform: translate(-50%, -50%) rotate(-360deg);
     }
 }
+
