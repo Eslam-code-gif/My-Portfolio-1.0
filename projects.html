@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Abdelrahim Mohamed</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FIX: Added Font Awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="cursor-dot"></div>
@@ -13,6 +15,8 @@
     <nav class="navbar-static">
         <div class="container">
             <div class="logo">Abdelrahim</div>
+            <!-- FIX: Added Hamburger Menu Icon -->
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Me</a></li>
@@ -30,11 +34,22 @@
 
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
+                    <!-- ADDED 'flutter' BUTTON -->
+                    <button class="filter-btn" data-filter="flutter">Flutter</button>
                     <button class="filter-btn" data-filter="web">Web</button>
                     <button class="filter-btn" data-filter="cpp">C++</button>
                     <button class="filter-btn" data-filter="dart">Dart</button>
                 </div>
                 <div class="project-grid">
+                    
+                    <!-- ADDED NEW FLUTTER PROJECT CARD -->
+                    <div class="project-card" data-category="flutter">
+                        <h3>Minimal Weather App</h3>
+                        <p>A clean, minimal weather application built with Flutter. It automatically detects your location to display the 
+current temperature and weather conditions, complete with beautiful Lottie animations and persistent theme 
+support (Light/Dark/System).&nbsp;</p>
+                        <a href="https://github.com/Eslam-code-gif/Em-weather-app" class="button button-small" target="_blank">View Project</a>
+                    </div>
                     
                     <div class="project-card" data-category="web">
                         <h3>Mini Personal Website</h3>
@@ -83,3 +98,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
